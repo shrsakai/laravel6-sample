@@ -63,14 +63,4 @@ class TaskPolicy
         // 作成者
         return ($user->id === $task->user_id);
     }
-
-    /**
-     * @param User $user
-     * @return bool
-     */
-    public function bulkDoneStatus(User $user)
-    {
-        // 管理者
-        return ($user->user_group_id === UserGroup::ADMIN);
-    }
 }
