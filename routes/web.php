@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
+    Route::group(['middleware' => 'auth'], function () {
+        // REST API tasks
+        Route::apiResource('tasks', 'TaskController');
+        // POST - /tasks/bulk_done_status
+        Route::post('tasks/bulk_done_status', 'TaskController@bulkDoneStatus');
+    });
+});
